@@ -8,8 +8,9 @@ package play;
 /**
  *
  * @author rynox_000
+ * @param <T>
  */
-public interface Format {
+public interface Format<T> {
     
     public int getSize();
     

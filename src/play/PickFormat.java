@@ -6,15 +6,32 @@
 package play;
 
 import annotations.NumericFormat;
+import java.lang.reflect.Field;
 
 /**
  *
  * @author rynox_000
+ * @param <T>
  */
 public abstract class PickFormat implements Format {
     
     protected int size, column;
     protected int[] pool;
+    
+    public static Format generatePickFormat(Class<Format> F)
+        throws IllegalAccessException, InstantiationException, NoSuchFieldException {
+        
+        Format pf = F.asSubclass(F).newInstance();
+        Field f = F.getDeclaredField("numbers");
+        
+        
+        int[] num = {1,2,3,4,5,6};
+
+        f.setAccessible(true); 
+        f.set(pick, num);
+        
+        return pick;
+    }
     
     public PickFormat()
     {
